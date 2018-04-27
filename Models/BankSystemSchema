@@ -1,0 +1,47 @@
+account : {
+   '_id': 2231232,
+   'ownerName':'anyName',
+   'accountBalance':22250 		
+}
+
+activity : {
+  '_id' : mongoID,
+  'activity_Type':{WITHDRAW,DEPOSITE,TRANSFER_FROM,TRANSFER_TO,INQUIRY}
+  'activity_id':activityID
+}
+withdrawActivity :{
+   '_id' : mongoID,
+   'accountID': accID,
+   'moneyWithdrawed':value,
+   'balanceBefore',value,
+   'balanceAfter',value   
+}
+
+depositActivity :{
+   '_id' : mongoID,
+   'accountID': accID,
+   'moneyDeposited':value,
+   'balanceBefore',value,
+   'balanceAfter',value   
+}
+
+transferFromActivity :{
+   '_id' : mongoID,
+   'accountID': accID,
+    'moneyAccepted'value,
+   'balanceBefore',value,
+   'balanceAfter',value  
+}
+transferToActivity :{
+    '_id' : mongoID,	
+    'accountID:accID,
+    'moneyTransfered':value,
+    'balanceBefore',value,
+    'balanceAfter',value
+}
+
+inquiryActivity :{
+   '_id' : mongoID,
+   'accountID': accID,
+   'balance': value,
+}

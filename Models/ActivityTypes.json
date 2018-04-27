@@ -1,0 +1,7 @@
+{
+  "WITHDRAW":1,
+  "DEPOSIT":2,
+  "TRANSFER_TO":3,
+  "TRANSFER_FROM":4,
+  "INQUIRY":5
+}

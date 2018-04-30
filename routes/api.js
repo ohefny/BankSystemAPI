@@ -58,7 +58,7 @@ router.get('/transfer', function (req, res, next) {
   var from_id=req.query.from;
   var to_id=req.query.to;
   var value=Number.parseInt(req.query.value);
-  repo.makeTransferTo(to_id,from_id,value,(err,acc)=>{
+  repo.makeTransferTo(from_id,to_id,value,(err,acc)=>{
       if(err){
           res.status(400).send(err.msg);
       }

@@ -101,7 +101,7 @@ function makeDeposit(acc_id, value, callback) {
             callback(err,null);
         else {
             callback(null, acc);
-            saveActivity(ActivityType.DEPOSIT, acc_id, value);
+            saveActivity(ActivityType.DEPOSIT, acc, value);
         }
     });
 
@@ -113,8 +113,7 @@ function inquiry(acc_id, callback) {
             callback(err,null);
         else{
             callback(null,acc.balance);
-            saveActivity(ActivityType.INQUIRY, acc_id);
-
+            saveActivity(ActivityType.INQUIRY, acc);
         }
     });
 

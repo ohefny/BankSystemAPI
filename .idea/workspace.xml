@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b715349-bf01-485a-8c83-23f21101f45e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/db_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/Config/db_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Config/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErrorTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/ErrorTypes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/Repository.js" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Repository.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/accountModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/Models/accountModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,8 +21,8 @@
           <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/api.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1037">
-                  <caret line="39" column="7" lean-forward="true" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
+                <state relative-caret-position="585">
+                  <caret line="39" column="7" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
                 </state>
               </provider>
             </entry>
@@ -38,7 +31,7 @@
             <entry file="file://$PROJECT_DIR$/Models/ActivityTypes.json">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="75">
-                  <caret line="5" column="9" lean-forward="true" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+                  <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
                 </state>
               </provider>
             </entry>
@@ -64,8 +57,8 @@
           <file leaf-file-name="Repository.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Models/Repository.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="296">
-                  <caret line="175" column="31" lean-forward="true" selection-start-line="175" selection-start-column="31" selection-end-line="175" selection-end-column="31" />
+                <state relative-caret-position="150">
+                  <caret line="172" column="1" lean-forward="true" selection-start-line="172" selection-start-column="1" selection-end-line="172" selection-end-column="1" />
                 </state>
               </provider>
             </entry>
@@ -73,8 +66,8 @@
           <file leaf-file-name="model.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/model.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="135">
-                  <caret line="1806" column="20" lean-forward="true" selection-start-line="1806" selection-start-column="20" selection-end-line="1806" selection-end-column="20" />
+                <state relative-caret-position="27090">
+                  <caret line="1806" column="20" selection-start-line="1806" selection-start-column="20" selection-end-line="1806" selection-end-column="20" />
                 </state>
               </provider>
             </entry>
@@ -91,7 +84,7 @@
           <file leaf-file-name="connection.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/connection.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="555">
+                <state relative-caret-position="3900">
                   <caret line="260" selection-start-line="260" selection-end-line="260" />
                 </state>
               </provider>
@@ -287,11 +280,12 @@
       <workItem from="1524812314468" duration="800000" />
       <workItem from="1524958161544" duration="2139000" />
       <workItem from="1525044631944" duration="8330000" />
+      <workItem from="1525112937871" duration="707000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38585000" />
+    <option name="totallyTimeSpent" value="39292000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1368" height="741" extended-state="6" />
@@ -302,10 +296,10 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5014641" side_tool="true" weight="0.3082942" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49853587" weight="0.30877742" />
       <window_info id="npm" order="2" sideWeight="0.5034965" side_tool="true" weight="0.24597365" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49853587" weight="0.30877742" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49926794" visible="true" weight="0.3275862" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49926794" weight="0.32707354" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39811912" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -338,96 +332,82 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Models/Repository.js</url>
-          <line>211</line>
+          <line>210</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Models/Repository.js</url>
-          <line>210</line>
+          <line>209</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Models/Repository.js</url>
           <line>16</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Models/Repository.js</url>
           <line>28</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Models/Repository.js</url>
           <line>33</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Models/Repository.js</url>
           <line>17</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/routes/api.js</url>
           <line>34</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/routes/api.js</url>
           <line>38</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/routes/api.js</url>
           <line>49</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/routes/api.js</url>
           <line>47</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Models/Repository.js</url>
-          <line>125</line>
-          <properties lambdaOrdinal="-1" />
+          <line>124</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Models/Repository.js</url>
-          <line>126</line>
-          <properties lambdaOrdinal="-1" />
+          <line>125</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Models/Repository.js</url>
-          <line>184</line>
-          <properties lambdaOrdinal="-1" />
+          <line>183</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Models/Repository.js</url>
-          <line>192</line>
-          <properties lambdaOrdinal="-1" />
+          <line>191</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Models/Repository.js</url>
-          <line>189</line>
-          <properties lambdaOrdinal="-1" />
+          <line>188</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Models/Repository.js</url>
           <line>64</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="38" />
         </line-breakpoint>
       </breakpoints>
@@ -650,7 +630,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/connection.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
+        <state relative-caret-position="3900">
           <caret line="260" selection-start-line="260" selection-end-line="260" />
         </state>
       </provider>
@@ -699,22 +679,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="1806" column="20" lean-forward="true" selection-start-line="1806" selection-start-column="20" selection-end-line="1806" selection-end-column="20" />
+        <state relative-caret-position="27090">
+          <caret line="1806" column="20" selection-start-line="1806" selection-start-column="20" selection-end-line="1806" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1037">
-          <caret line="39" column="7" lean-forward="true" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
+        <state relative-caret-position="585">
+          <caret line="39" column="7" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Models/ActivityTypes.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="5" column="9" lean-forward="true" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -727,8 +707,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Models/Repository.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="175" column="31" lean-forward="true" selection-start-line="175" selection-start-column="31" selection-end-line="175" selection-end-column="31" />
+        <state relative-caret-position="150">
+          <caret line="172" column="1" lean-forward="true" selection-start-line="172" selection-start-column="1" selection-end-line="172" selection-end-column="1" />
         </state>
       </provider>
     </entry>

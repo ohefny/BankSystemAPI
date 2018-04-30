@@ -1,7 +1,7 @@
 //connect to DB and retrieve and insert items
 var mongoose = require('mongoose');
 var db_config = require('../Config');
-var Account = require('./accountModel');
+var BankAccount = require('./accountModel');
 var Activity = require('./activityModel');
 var ErrorTypes = require('../ErrorTypes');
 var ActivityType = require('./ActivityTypes');
@@ -11,177 +11,211 @@ mongoose.connect(db_config.getDBConnectionStr(), (err) => {
         isDataBaseConnected = true;
 });
 
-function saveAccount(acc, reportError) {
-    var errFound = false;
-    if (checkAccountByUname(acc)) {
-        errFound = true;
-        reportError(ErrorTypes.DuplicateAccount);
-    }
-    if (errFound)
-        return null;
-    var val = new Account({
-        "userName": acc.userName,
-        "balance": 0,
-        "password": acc.password,
-        "loginName": acc.loginName
-    });
-    val.save((err) => {
-        if (err) {
-            reportError(ErrorTypes.CantSaveData);
-            errFound = true;
-            return;
+function saveAccount(acc, callback) {
+    var filter={"loginName": acc.loginName};
+    BankAccount.findOne(filter, (err, res) => {
+        if (res)
+            callback(ErrorTypes.DuplicateAccount,null);
+        else{
+            var val = new BankAccount({
+                "_id":new mongoose.Types.ObjectId(),
+                "userName": acc.userName,
+                "balance": 0,
+                "password": acc.password,
+                "loginName": acc.loginName
+            });
+            val.markModified('object');
+            val.save(function(err) {
+                if (err) {
+                    console.log(err);
+                    callback(ErrorTypes.CantSaveData,null);
+                }
+                else
+                    callback(null,val._doc);
+
+
+            });
+
         }
     });
-    if (errFound)
-        return null;
-    return val;
+
 };
 
-
-function makeWithdraw(acc, value, reportError) {
-    if (takeMoneyOff(acc, value, reportError)) {
-        saveActivity(ActivityType.WITHDRAW, acc, value);
-        return checkAccount(acc._id);
-    }
-    return null;
-};
-
-function makeDeposit(acc, value, reportError) {
-    if (addMoney(acc, value, reportError)) {
-        saveActivity(ActivityType.DEPOSIT, acc, value);
-        return checkAccount(acc._id);
-    }
-    return null;
-};
-
-function makeTransferTo(sourceAcc, targetAcc, value, reportError) {
-    if (takeMoneyOff(sourceAcc, value, reportError)) {
-        if (addMoney(targetAcc, value, reportError)) {
-            saveActivity(ActivityType.TRANSFER_TO, sourceAcc, value, targetAcc);
-            saveActivity(ActivityType.TRANSFER_FROM, targetAcc, value, sourceAcc);
-            return checkAccount(sourceAcc._id);
+//done
+function makeWithdraw(acc_id, value, callback) {
+    takeMoneyOff(acc_id, value, (err,res)=>{
+        if(err)
+            callback(err,null)
+        else{
+            saveActivity(ActivityType.WITHDRAW, res, value);
+            /*checkAccountById(acc,(err,res)=>{
+                callback(err,res);
+            });*/
+            callback(null,res);
         }
+    });
+
+};
+//done
+function makeDeposit(acc_id, value, callback) {
+        addMoney(acc_id, value, (err,acc)=>{
+            if(err)
+                callback(err,null);
+            else {
+                saveActivity(ActivityType.DEPOSIT, acc, value);
+                callback(null,acc);
+            }
+        });
+};
+//done
+function makeTransferTo(src_acc_id, target_acc_id, value, callback) {
+    var src_acc=null;
+    var target_acc=null;
+    takeMoneyOff(src_acc_id, value, (err,acc)=>{
+        if(!err){
+            src_acc=acc;
+            addMoney(target_acc_id,value,(err,tar_acc)=>{
+                if(!err){
+                    target_acc=tar_acc;
+                    saveActivity(ActivityType.TRANSFER_TO, src_acc, value, target_acc);
+                    saveActivity(ActivityType.TRANSFER_FROM, target_acc, value, src_acc);
+                    callback(null,src_acc);
+                }
+                else{
+                    //rollback
+                    addMoney(src_acc_id,value,(err,acc)=>{});
+                    callback(err,null);
+                }
+            });
+        }
+        else
+            callback(err,null);
+
+    });
+
+};
+//done
+function makeDeposit(acc_id, value, callback) {
+    addMoney(acc_id, value, (err,acc)=>{
+        if(err)
+            callback(err,null);
         else {
-            addMoney(sourceAcc, value, null);
-        }
-    }
-    return null;
-};
-
-function makeDeposit(acc, value, reportError) {
-    if (addMoney(acc, value, reportError)) {
-        saveActivity(ActivityType.DEPOSIT, acc, value);
-        return checkAccount(acc._id);
-    }
-    return null;
-};
-
-function inquiry(accID, reportError) {
-    var acc = checkAccount({"_id": accID});
-    if (acc) {
-        saveActivity(ActivityType.INQUIRY, acc);
-        return acc.balance;
-    }
-    else
-        reportError(ErrorTypes.AccountNotFound)
-
-    return null;
-};
-
-function updateAccount(targetAcc, reportError) {
-    var errorFound = false;
-    targetAcc.balance = newBalance;
-    targetAcc.update((err) => {
-        if (err) {
-            reportError(ErrorTypes.CantSaveData);
-            errorFound = true;
-            return;
+            callback(null, acc);
+            saveActivity(ActivityType.DEPOSIT, acc_id, value);
         }
     });
-    return errorFound;
-}
 
+};
+//done
+function inquiry(acc_id, callback) {
+    checkAccountById(acc_id,(err,acc)=>{
+        if(err)
+            callback(err,null);
+        else{
+            callback(null,acc.balance);
+            saveActivity(ActivityType.INQUIRY, acc_id);
+
+        }
+    });
+
+};
+
+//done
+function updateAccount(targetAcc, callback) {
+
+    BankAccount.findByIdAndUpdate(targetAcc._id,{ $set: { balance: targetAcc.balance }}, { new: true },(err,doc) => {
+        if (err) {
+            console.log(err);
+            callback(ErrorTypes.CantSaveData, null);
+        }
+
+        else
+            callback(null,doc._doc);
+    });
+
+}
+//done
 function validateBalance(balance, value, reportError) {
     if (value > balance) {
-        reportError(ErrorTypes.BalanceNotEnough);
         return false;
     }
     return true;
 }
-
-function takeMoneyOff(acc, value, reportError) {
-    var errorFound = false;
-    var sourceAcc = checkAccount(acc);
-    if (sourceAcc) {
-        //validate balance and value then update account
-        if (validateBalance(sourceAcc.balance, value, reportError)) {
-            sourceAcc.balance = sourceAcc.balance - value;
-            errorFound = updateAccount(sourceAcc, reportError);
+//done
+function takeMoneyOff(acc_id, value, callback) {
+    BankAccount.findById(acc_id, (err, res) => {
+        var sourceAcc = res._doc;
+        if (res) {
+            if (validateBalance(sourceAcc.balance, value)){
+                sourceAcc.balance = sourceAcc.balance - value;
+                updateAccount(sourceAcc, callback);
+            }
+            else
+                callback(ErrorTypes.BalanceNotEnough,null);
         }
-        if (errorFound)
-            return null;
-    }
-    else {
-        errorFound = true;
-        reportError(ErrorTypes.AccountNotFound);
-    }
-    return !errorFound;
-}
+        else {
+            callback(ErrorTypes.AccountNotFound,null);
+        }
 
-function addMoney(acc, value, reportError) {
-    var errorFound = false;
-    var sourceAcc = checkAccount(acc);
-    if (sourceAcc) {
-        sourceAcc.balance = sourceAcc.balance + value;
-        errorFound = updateAccount(sourceAcc, reportError);
-    }
-    else {
-        errorFound = true;
-        reportError(ErrorTypes.AccountNotFound);
-    }
-    return !errorFound;
-}
+    });
 
+}
+//done
+function addMoney(accID, value, callback) {
+    checkAccountById(accID,(err,resAcc)=>{
+        if(err)
+            callback(err,null);
+        else{
+            resAcc.balance=resAcc.balance+value;
+            updateAccount(resAcc,callback);
+        }
+
+    });
+}
+//done
+//todo fixx sourceAcc that replaced with acc_id
 function saveActivity(type, sourceAcc, val, targetAcc) {
     var balanceBefore = sourceAcc.balance;
     if (type == ActivityType.WITHDRAW || type === ActivityType.TRANSFER_TO) {
         balanceBefore = sourceAcc.balance + val;
     }
-    if (type = ActivityType.TRANSFER_FROM || type === ActivityType.DEPOSIT) {
+    if (type === ActivityType.DEPOSIT||type === ActivityType.TRANSFER_FROM) {
         balanceBefore = sourceAcc.balance - val;
     }
     var activityModel = Activity({
         activityType: type,
         account: sourceAcc,
-        targetAccount: null,
+        targetAccount: targetAcc,
         balanceBefore: balanceBefore,
         balanceAfter: sourceAcc.balance
     });
     activityModel.save((err) => {
-        if (!err) {
-
-        }
+        if (err)
+            console.log("Save Activity Failed ",err);
+        console.log("Activity Saved");
     });
 }
-
-function checkAccount(acc) {
-    var accountFound = null;
-    Account.findById(acc._id, (err, res) => {
-        if (!err) {
-            accountFound = res
+//done
+function checkAccountById(acc_id, callback) {
+    BankAccount.findById(acc_id,(err, res) => {
+        if (res) {
+            callback(null,res._doc);
         }
+        else
+            callback(ErrorTypes.AccountNotFound,null);
     });
-    return accountFound;
 };
-
-function checkAccountByUname(acc) {
-    var accountFound = null;
-    Account.find({"loginName": acc.loginName}, (err, res) => {
-        if (!err) {
-            accountFound = res;
+//done
+function checkAccountByUname(loginName,callback) {
+    var filter={"loginName": loginName};
+    BankAccount.findOne(filter,(err, res) => {
+        if (res) {
+            callback(null,res._doc);
+        }
+        else{
+            callback(ErrorTypes.AccountNotFound,null);
         }
     });
-    return accountFound;
 }
 
-module.exports = {saveAccount, inquiry, makeDeposit, makeTransferTo, makeWithdraw, isDataBaseConnected};
+module.exports = {saveAccount, inquiry, makeDeposit, makeTransferTo, makeWithdraw,checkAccountByUname, isDataBaseConnected};

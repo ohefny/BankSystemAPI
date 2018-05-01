@@ -1,6 +1,8 @@
 {
-  "url":"mongodb://127.0.0.1",
-  "port":"27017",
-  "databaseName":"banking_system",
-  "credentials":null
+  "key":"mongodb:",
+  "url":"ds111430.mlab.com",
+  "port":"11430",
+  "databaseName":"banksystemdorgham",
+  "credentials":"dorgham:dorgham"
 }
+//mongodb://<dbuser>:<dbpassword>@ds111430.mlab.com:11430/banksystemdorgham

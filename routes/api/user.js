@@ -9,10 +9,10 @@ router.get('/', function (req, res, next) {
 });
 
 
-router.get('/login', function (req, res, next) {
-    var loginName=req.query.loginName;
+/*router.get('/login', function (req, res, next) {
+    var accNum=req.query.accountNumber;
     var pass=req.query.password;
-    repo.login(loginName,pass,(errType,acc)=>{
+    repo.login(accNum,pass,(errType,acc)=>{
         if(errType){
             res.status(401).end(errType.msg);
         }
@@ -20,13 +20,13 @@ router.get('/login', function (req, res, next) {
             res.send(acc);
         }
     });
-});
+});*/
 router.post('/login', function (req, res, next) {
-    var loginName=req.body.loginName;
+    var accNum=req.body.accountNumber;
     var pass=req.body.password;
-    repo.login(loginName,pass,(errType,acc)=>{
+    repo.login(accNum,pass,(errType,acc)=>{
         if(errType){
-            res.status(401).send(errType.msg);
+            res.status(400).send(errType.msg);
         }
         else{
             res.send(acc);

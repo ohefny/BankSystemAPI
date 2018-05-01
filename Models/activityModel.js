@@ -6,7 +6,7 @@ var activitySchema=new Schema({
    "account":{type: mongoose.Schema.Types.ObjectId,ref:'Account'},
    "balanceBefore":Number,
    "balanceAfter":Number,
-   "targetAccount":{type: mongoose.Schema.Types.ObjectId,ref:'Account'}
+   "targetAccount":{type:Number}
 });
 var activity=mongoose.model('Activity',activitySchema);
 module.exports=activity;

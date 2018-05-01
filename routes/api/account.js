@@ -1,34 +1,26 @@
 var express = require('express');
 var router = express.Router();
-var repo = require('../Models/Repository');
-var ErrorType = require('../ErrorTypes')
+var repo = require('../../Models/Repository');
+var ErrorType = require('../../ErrorTypes')
 /* GET home page. */
 router.get('/', function (req, res, next) {
     // console.log(repo.isDataBaseConnected);
     res.render('index', {title: 'Banking System API Page'});
 });
 
-/*router.use('/*', function (req, res, next) {
-    console.log(repo.isDataBaseConnected);
-    if (!repo.isDataBaseConnected) {
-        res.sendStatus(500);
-        res.send(ErrorType.InternalServerError.msg);
-        res.end();
-        return;
+router.use(function (req, res, next) {
+    var loginName=req.headers['login-name'];
+    var password=req.headers['password'];
+    if (!loginName || ! password)
+        res.status(401).end("Unauthorized Access");
+    else{
+        repo.login(loginName,password,(err,acc)=>{
+            if(err)
+                res.status(401).end("Unauthorized Access");
+            else
+                next();
+        })
     }
-    next();
-});*/
-router.post('/login', function (req, res, next) {
-
-});
-router.post('/account',function (req,res,next) {
-    repo.saveAccount(req.body, (errType,acc) => {
-        if(errType) {
-            res.status(400).send(errType.msg);
-        }
-        else
-            res.json(res);
-    });
 });
 router.get('/account/:id', function (req, res, next) {
     //todo check auth headers before

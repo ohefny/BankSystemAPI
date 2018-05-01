@@ -10,8 +10,21 @@ mongoose.connect(db_config.getDBConnectionStr(), (err) => {
     if (!err)
         isDataBaseConnected = true;
 });
-
+function login(loginName, pass, callback) {
+    loginName=loginName.toLowerCase();
+    BankAccount.findOne({"loginName":loginName,"password":pass},(err,res)=>{
+        if(err){
+            console.log(err);
+            callback(ErrorTypes.CantPerformOP,null);
+        }
+        if(!res)
+            callback(ErrorTypes.WrongPassOrUName,null);
+        else
+            callback(null,res);
+    });
+};
 function saveAccount(acc, callback) {
+    acc.loginName=acc.loginName.toLowerCase();
     var filter={"loginName": acc.loginName};
     BankAccount.findOne(filter, (err, res) => {
         if (res)
@@ -24,7 +37,6 @@ function saveAccount(acc, callback) {
                 "password": acc.password,
                 "loginName": acc.loginName
             });
-            val.markModified('object');
             val.save(function(err) {
                 if (err) {
                     console.log(err);
@@ -217,4 +229,4 @@ function checkAccountByUname(loginName,callback) {
     });
 }
 
-module.exports = {saveAccount, inquiry, makeDeposit, makeTransferTo, makeWithdraw,checkAccountByUname, isDataBaseConnected};
+module.exports = {login,saveAccount, inquiry, makeDeposit, makeTransferTo, makeWithdraw,checkAccountByUname, isDataBaseConnected};

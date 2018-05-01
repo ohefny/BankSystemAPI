@@ -4,7 +4,13 @@ var Schema=mongoose.Schema;
 var accountSchema=new Schema({
     "_id":Schema.Types.ObjectId,
     "userName":String,
-    "loginName":String,
+    "loginName":{
+        type: String,
+        lowercase: true,
+        unique : true,
+        required : true,
+        dropDups: true
+    },
     "password":String,
     "balance":Number
 });
